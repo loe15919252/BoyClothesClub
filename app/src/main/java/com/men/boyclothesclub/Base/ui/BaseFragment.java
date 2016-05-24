@@ -2,6 +2,7 @@ package com.men.boyclothesclub.Base.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public abstract class BaseFragment extends Fragment {
         title.setText(setTitle() != null ? setTitle() : "男人邦");
         init();
         initEvent();
+        Log.e("-----", "onCreateView: " );
         return rootView;
     }
 
