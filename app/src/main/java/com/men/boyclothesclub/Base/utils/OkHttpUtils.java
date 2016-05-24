@@ -17,7 +17,7 @@ import okhttp3.ResponseBody;
  * <p/>
  * e_mail  dengpbs@163.com.
  */
-public class OkHttpUtiils {
+public class OkHttpUtils {
     private static final OkHttpClient okHttpClient = new OkHttpClient();
 
     /**

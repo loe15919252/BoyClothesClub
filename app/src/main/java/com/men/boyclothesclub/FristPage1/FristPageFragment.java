@@ -6,14 +6,11 @@ import android.widget.ListView;
 
 import com.men.boyclothesclub.Base.ui.BaseFragment;
 import com.men.boyclothesclub.Base.utils.LogUtil;
-import com.men.boyclothesclub.Base.utils.OkHttpUtiils;
-import com.men.boyclothesclub.FristPage1.bean.TagBean;
+import com.men.boyclothesclub.Base.utils.OkHttpUtils;
 import com.men.boyclothesclub.FristPage1.utils.FristConstont;
 import com.men.boyclothesclub.R;
 
 import java.io.IOException;
-
-import javax.xml.transform.OutputKeys;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -52,7 +49,7 @@ public class FristPageFragment extends BaseFragment {
     }
 
     public void setData() {
-        OkHttpUtiils.getRequest(FristConstont.Tag, new Callback() {
+        OkHttpUtils.getRequest(FristConstont.Tag, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 LogUtil.e("连接错误");
@@ -61,7 +58,7 @@ public class FristPageFragment extends BaseFragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 ResponseBody body = response.body();
-                LogUtil.e("连接成功，数据："+body.string());
+                LogUtil.e("连接成功，数据：" + body.string());
 //                TagBean b = TagBean.objectFromData(body.string());
             }
         });
