@@ -11,6 +11,8 @@ import com.men.boyclothesclub.Mine5.MineFragment;
 import com.men.boyclothesclub.School4.SchoolFragment;
 import com.men.boyclothesclub.Single2.SingleFragment;
 
+import java.util.Timer;
+
 import static com.men.boyclothesclub.R.id.id_btn_group;
 import static com.men.boyclothesclub.R.id.id_btn_radio;
 
@@ -21,6 +23,13 @@ public class MainActivity extends BaseActivity {
     private BaseFragment fragment1, fragment2, fragment3, fragment4, fragment5;
     private Fragment[] fragments;
     private RadioGroup group;
+    private static Timer timer;
+    public static Timer getTimer() {
+        if(timer==null){
+            return new Timer();
+        }
+        return timer;
+    }
 
 
     @Override

@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.men.boyclothesclub.Base.ui.WebActivity;
+import com.men.boyclothesclub.Base.utils.Constont;
+import com.men.boyclothesclub.FristPage1.bean.ViewPagerBean;
+
 import java.util.List;
 
 /**
@@ -19,15 +23,12 @@ public class ViewPagerCommonAdapter extends PagerAdapter {
 
     private List<ImageView> list;
     private Context context;
-//    private List<LiZhiBean.DataBean.ListBean> headList;
+    private List<ViewPagerBean.DataBean> listBean;
 
-    public ViewPagerCommonAdapter(List<ImageView> list,
-                                  Context context
-//                                  List<LiZhiBean.DataBean.ListBean> headList
-    ) {
+    public ViewPagerCommonAdapter(List<ImageView> list,Context context,List<ViewPagerBean.DataBean> listBean) {
         this.list = list;
         this.context = context;
-//        this.headList = headList;
+        this.listBean = listBean;
     }
 
     @Override
@@ -46,9 +47,9 @@ public class ViewPagerCommonAdapter extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(context, WebActivity.class);
-//                intent.putExtra(Contants.TAG_WEB_URL, headList.get(position).getData().getHref());
-//                context.startActivity(intent);
+                Intent intent = new Intent(context, WebActivity.class);
+                intent.putExtra(Constont.TAG_WEB_URL, listBean.get(position).getTheme_link());
+                context.startActivity(intent);
             }
         });
         container.addView(view);
