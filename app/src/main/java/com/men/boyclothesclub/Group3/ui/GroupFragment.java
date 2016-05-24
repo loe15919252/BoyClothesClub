@@ -1,5 +1,7 @@
 package com.men.boyclothesclub.Group3.ui;
 
+import android.view.LayoutInflater;
+
 import com.men.boyclothesclub.Base.ui.BaseFragment;
 import com.men.boyclothesclub.R;
 
@@ -20,9 +22,11 @@ public class GroupFragment extends BaseFragment {
     }
 
     @Override
-    protected void init() {
+    protected void init(LayoutInflater inflater) {
 
     }
+
+
 
     @Override
     protected void initEvent() {

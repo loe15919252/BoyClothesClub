@@ -1,5 +1,7 @@
 package com.men.boyclothesclub.Mine5.ui;
 
+import android.view.LayoutInflater;
+
 import com.men.boyclothesclub.Base.ui.BaseFragment;
 import com.men.boyclothesclub.R;
 
@@ -20,7 +22,7 @@ public class MineFragment extends BaseFragment {
     }
 
     @Override
-    protected void init() {
+    protected void init(LayoutInflater inflater) {
 
     }
 

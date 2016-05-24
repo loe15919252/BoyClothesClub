@@ -22,7 +22,7 @@ public abstract class BaseFragment extends Fragment {
         rootView = inflater.inflate(setRootLayout(), null);
         title = (TextView) rootView.findViewById(R.id.id_toolbar_title);
         title.setText(setTitle() != null ? setTitle() : "男人邦");
-        init();
+        init(inflater);
         initEvent();
         return rootView;
     }
@@ -39,7 +39,7 @@ public abstract class BaseFragment extends Fragment {
     /**
      * 初始化数据在onCreateView执行
      */
-    protected abstract void init();
+    protected abstract void init(LayoutInflater inflater);
 
     /**
      * 初始化触发事件在onCreateView执行

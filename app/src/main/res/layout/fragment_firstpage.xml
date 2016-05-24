@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="#e9a4e9"
     android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/id_toolBar"
         android:layout_width="match_parent"
@@ -18,4 +19,10 @@
             android:text="我的App"
             android:textSize="18sp" />
     </android.support.v7.widget.Toolbar>
+
+    <ListView
+        android:id="@+id/id_lv_frist"
+        android:entries="@array/list_test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
 </LinearLayout>
