@@ -2,15 +2,14 @@ package com.men.boyclothesclub;
 
 import android.support.v4.app.Fragment;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.men.boyclothesclub.Base.ui.BaseActivity;
 import com.men.boyclothesclub.Base.ui.BaseFragment;
-import com.men.boyclothesclub.FristPage1.ui.FristPageFragment;
-import com.men.boyclothesclub.Group3.ui.GroupFragment;
-import com.men.boyclothesclub.Mine5.ui.MineFragment;
-import com.men.boyclothesclub.School4.ui.SchoolFragment;
-import com.men.boyclothesclub.Single2.ui.SingleFragment;
+import com.men.boyclothesclub.FristPage1.FristPageFragment;
+import com.men.boyclothesclub.Group3.GroupFragment;
+import com.men.boyclothesclub.Mine5.MineFragment;
+import com.men.boyclothesclub.School4.SchoolFragment;
+import com.men.boyclothesclub.Single2.SingleFragment;
 
 import static com.men.boyclothesclub.R.id.id_btn_group;
 import static com.men.boyclothesclub.R.id.id_btn_radio;

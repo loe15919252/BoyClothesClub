@@ -1,4 +1,4 @@
-package com.men.boyclothesclub.Group3.ui;
+package com.men.boyclothesclub.School4;
 
 import android.view.LayoutInflater;
 
@@ -8,24 +8,23 @@ import com.men.boyclothesclub.R;
 /**
  * Created by Administrator on 2016/5/23.
  */
-public class GroupFragment extends BaseFragment {
+public class SchoolFragment extends BaseFragment {
 
 
     @Override
     protected String setTitle() {
-        return "搭配";
+        return "穿衣学堂";
     }
 
     @Override
     protected int setRootLayout() {
-        return R.layout.fragment_group;
+        return R.layout.fragment_mine;
     }
 
     @Override
     protected void init(LayoutInflater inflater) {
 
     }
-
 
 
     @Override

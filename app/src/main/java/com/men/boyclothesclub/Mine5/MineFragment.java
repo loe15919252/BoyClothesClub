@@ -1,4 +1,4 @@
-package com.men.boyclothesclub.Single2.ui;
+package com.men.boyclothesclub.Mine5;
 
 import android.view.LayoutInflater;
 
@@ -8,17 +8,17 @@ import com.men.boyclothesclub.R;
 /**
  * Created by Administrator on 2016/5/23.
  */
-public class SingleFragment extends BaseFragment {
+public class MineFragment extends BaseFragment {
 
 
     @Override
     protected String setTitle() {
-        return "单品";
+        return "我的";
     }
 
     @Override
     protected int setRootLayout() {
-        return R.layout.fragment_single;
+        return R.layout.fragment_mine;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.men.boyclothesclub.Mine5.ui;
+package com.men.boyclothesclub.Group3;
 
 import android.view.LayoutInflater;
 
@@ -8,23 +8,25 @@ import com.men.boyclothesclub.R;
 /**
  * Created by Administrator on 2016/5/23.
  */
-public class MineFragment extends BaseFragment {
+public class GroupFragment extends BaseFragment {
 
 
     @Override
     protected String setTitle() {
-        return "我的";
+        return "搭配";
     }
 
     @Override
     protected int setRootLayout() {
-        return R.layout.fragment_mine;
+        return R.layout.fragment_group;
     }
 
     @Override
     protected void init(LayoutInflater inflater) {
 
     }
+
+
 
     @Override
     protected void initEvent() {
