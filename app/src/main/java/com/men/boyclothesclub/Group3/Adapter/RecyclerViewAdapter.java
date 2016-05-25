@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.men.boyclothesclub.Group3.bin.Group_bin;
 import com.men.boyclothesclub.R;
 import com.squareup.picasso.Picasso;
+import com.wangjie.shadowviewhelper.ShadowProperty;
+import com.wangjie.shadowviewhelper.ShadowViewHelper;
 
 import java.util.List;
 
@@ -23,17 +25,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private List<Group_bin.DataBean> list;
     private Context context;
+    private ShadowProperty shadowProperty;
 
     // TODO: 2016/5/24 构造方法 传递数据源和上下文 
     public RecyclerViewAdapter(List<Group_bin.DataBean> list, Context context) {
         this.list = list;
         this.context = context;
+        // TODO: 2016/5/25 阴影样式
+        shadowProperty = new ShadowProperty()
+                .setShadowColor(0x77000000)
+                .setShadowDy(0)
+                .setShadowRadius(4);
     }
 
     @Override
     public MasonryView onCreateViewHolder(ViewGroup parent, int viewType) {
         // TODO: 2016/5/24 获取布局文件 
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.custom3_recycler_item, parent, false);
+        // TODO: 2016/5/25
+        ShadowViewHelper.bindShadowHelper(shadowProperty,view.findViewById(R.id.id_Group_Layout));
         return new MasonryView(view);
     }
 
@@ -44,6 +54,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Picasso.with(context)
                 .load(list.get(position).getBig_image())
                 .into(holder.imageView);
+
 
     }
 

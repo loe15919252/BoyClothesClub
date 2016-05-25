@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:padding="@dimen/custom3_recycler_item_padding"
     android:gravity="center_horizontal"
-    android:background="#5b5b5b"
+    android:background="#fff"
+    android:id="@+id/id_Group_Layout"
     android:layout_height="wrap_content">
     <!--瀑布流Item布局-->
 
     <ImageView
-        android:background="#bebebe"
         android:padding="@dimen/custom3_recycler_item_padding"
         android:id="@+id/id_Recycler_item_iv"
         android:scaleType="centerCrop"
+        android:cropToPadding="true"
+        android:elevation="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -20,9 +21,9 @@
         android:text="@string/test"
         android:ellipsize="end"
         android:singleLine="true"
+        android:textColor="@color/item_textcolor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#f10000"
         />
 
 </LinearLayout>

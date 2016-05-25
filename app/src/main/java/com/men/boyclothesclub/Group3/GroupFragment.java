@@ -2,12 +2,12 @@ package com.men.boyclothesclub.Group3;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 
 import com.men.boyclothesclub.Base.ui.BaseFragment;
 import com.men.boyclothesclub.Group3.Adapter.RecyclerViewAdapter;
 import com.men.boyclothesclub.Group3.bin.Group_bin;
+import com.men.boyclothesclub.Group3.utils.GroupRecyclerDecoration;
 import com.men.boyclothesclub.R;
 
 import java.io.IOException;
@@ -42,11 +42,12 @@ public class GroupFragment extends BaseFragment {
 
     @Override
     protected void init(LayoutInflater inflater) {
-        // TODO: 2016/5/24 初始化控件 
+        // TODO: 2016/5/24 初始化控件
         mRecycler= (RecyclerView) rootView.findViewById(R.id.id_Group_Recycler);
         mRecycler.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        mList=new ArrayList<>();
-        
+        // TODO: 2016/5/25  给Item添加边距
+        GroupRecyclerDecoration decoration=new GroupRecyclerDecoration(5);
+        mRecycler.addItemDecoration(decoration);
         initData();
         // TODO: 2016/5/24 设置适配器
         adapter = new RecyclerViewAdapter(mList, getActivity());
@@ -55,6 +56,7 @@ public class GroupFragment extends BaseFragment {
     }
 
     private void initData() {
+        mList=new ArrayList<>();
         // TODO: 2016/5/24 初始化数据源
         OkHttpClient httpClient=new OkHttpClient();
         Request request=new Request.Builder()
@@ -77,7 +79,7 @@ public class GroupFragment extends BaseFragment {
 
     @Override
     protected void initEvent() {
-        Log.e("-----", "initEvent: " );
+
 
     }
 }
