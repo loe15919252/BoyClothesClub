@@ -30,6 +30,7 @@ public class GroupFragment extends BaseFragment {
 
     @Override
     protected void initEvent() {
+        // Cs
 
     }
 }
