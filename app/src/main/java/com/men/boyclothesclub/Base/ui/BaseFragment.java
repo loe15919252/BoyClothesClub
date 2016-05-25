@@ -17,16 +17,23 @@ import com.men.boyclothesclub.R;
 public abstract class BaseFragment extends Fragment {
     protected TextView title;
     protected View rootView;
+    protected LayoutInflater inflater;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(setRootLayout(), null);
+        this.inflater = inflater;
+        return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         title = (TextView) rootView.findViewById(R.id.id_toolbar_title);
         title.setText(setTitle() != null ? setTitle() : "男人邦");
         init(inflater);
         initEvent();
-        Log.e("-----", "onCreateView: " );
-        return rootView;
+        Log.e("-----", "onCreateView: ");
     }
 
     protected abstract String setTitle();

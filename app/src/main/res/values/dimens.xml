@@ -5,4 +5,5 @@
     <dimen name="menu_marginLeft">60dp</dimen>
 
     <dimen name="custom3_recycler_item_padding">5dp</dimen>
+    <dimen name="topIcon_wh">50dp</dimen>
 </resources>

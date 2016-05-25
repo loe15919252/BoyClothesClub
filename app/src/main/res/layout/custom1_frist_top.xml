@@ -8,33 +8,176 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/id_vp_first"
         android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        android:layout_height="200dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/id_iv_top1"
+                android:layout_width="@dimen/topIcon_wh"
+                android:layout_height="@dimen/topIcon_wh"
+                android:layout_gravity="center"
+                android:layout_margin="6dp" />
+
+            <TextView
+                android:id="@+id/id_tv_top1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/id_iv_top2"
+                android:layout_width="@dimen/topIcon_wh"
+                android:layout_height="@dimen/topIcon_wh"
+                android:layout_gravity="center"
+                android:layout_margin="6dp" />
+
+            <TextView
+                android:id="@+id/id_tv_top2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/id_iv_top3"
+                android:layout_width="@dimen/topIcon_wh"
+                android:layout_height="@dimen/topIcon_wh"
+                android:layout_gravity="center"
+                android:layout_margin="6dp" />
+
+            <TextView
+                android:id="@+id/id_tv_top3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/id_iv_top4"
+                android:layout_width="@dimen/topIcon_wh"
+                android:layout_height="@dimen/topIcon_wh"
+                android:layout_gravity="center"
+                android:layout_margin="6dp" />
+
+            <TextView
+                android:id="@+id/id_tv_top4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
 
     <!--===============品牌精选=============-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:text="品牌精选"
         android:textSize="14sp" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:orientation="vertical">
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/id_iv_pp11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/id_iv_pp12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/id_iv_pp13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/id_iv_pp14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="fitXY" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/id_iv_pp21"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/id_iv_pp22"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/id_iv_pp23"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:scaleType="fitXY" />
+        </LinearLayout>
+    </LinearLayout>
     <!--===============搭配精选=============-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="6dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,17 +187,174 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/id_tv_dp_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="更多搭配" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        android:orientation="vertical">
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/id_iv_dp_big"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/id_iv_dp_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY" />
+
+                <ImageView
+                    android:id="@+id/id_iv_dp_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY" />
+
+                <ImageView
+                    android:id="@+id/id_iv_dp_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id_dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/id_tv_dp_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp" />
+
+            <TextView
+                android:id="@+id/id_tv_dp_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp" />
+
+            <TextView
+                android:id="@+id/id_tv_dp_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp" />
+
+            <TextView
+                android:id="@+id/id_tv_dp_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--==========-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/id_iv_dp_big2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/id_iv_dp_21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY" />
+
+                <ImageView
+                    android:id="@+id/id_iv_dp_22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY" />
+
+                <ImageView
+                    android:id="@+id/id_iv_dp_23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id_dp2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/id_tv_dp_21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp" />
+
+            <TextView
+                android:id="@+id/id_tv_dp_22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp" />
+
+            <TextView
+                android:id="@+id/id_tv_dp_23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp" />
+        </LinearLayout>
+    </LinearLayout>
     <!--===============学堂精选=============-->
     <TextView
         android:layout_width="wrap_content"
@@ -63,11 +363,77 @@
         android:text="学堂精选"
         android:textSize="18sp" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="200dp"
+        android:orientation="vertical">
 
-    </RelativeLayout>
+        <ImageView
+            android:id="@+id/id_iv_xt"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/id_tv_xt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/id_tv_xt_pl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:drawableLeft="@drawable/umeng_socialize_pv" />
+
+            <TextView
+                android:id="@+id/id_tv_xt_rd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="立即阅读" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/id_iv_xt2"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/id_tv_xt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/id_tv_xt_pl2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:drawableLeft="@drawable/umeng_socialize_pv" />
+
+            <TextView
+                android:id="@+id/id_tv_xt_rd2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="立即阅读" />
+        </RelativeLayout>
+    </LinearLayout>
     <!--===============特色市场=============-->
     <TextView
         android:layout_width="wrap_content"
@@ -75,9 +441,53 @@
         android:text="特色市场"
         android:textSize="14sp" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"></RelativeLayout>
+        android:layout_height="220dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/id_iv_ts1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/id_iv_ts2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitXY" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/id_iv_ts3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/id_iv_ts4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitXY" />
+        </LinearLayout>
+    </LinearLayout>
     <!--===============特色市场=============-->
     <TextView
         android:layout_width="wrap_content"

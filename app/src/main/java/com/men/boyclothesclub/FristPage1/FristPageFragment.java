@@ -4,14 +4,17 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.men.boyclothesclub.Base.adapter.ViewPagerCommonAdapter;
 import com.men.boyclothesclub.Base.ui.BaseFragment;
 import com.men.boyclothesclub.Base.utils.LogUtil;
 import com.men.boyclothesclub.Base.utils.OkHttpUtils;
+import com.men.boyclothesclub.FristPage1.bean.TagBean;
 import com.men.boyclothesclub.FristPage1.bean.ViewPagerBean;
 import com.men.boyclothesclub.FristPage1.utils.FristConstont;
 import com.men.boyclothesclub.MainActivity;
@@ -43,18 +46,59 @@ public class FristPageFragment extends BaseFragment {
     private int indexVp;
     private Timer timer;
     private TimerTask timerTask;
-    private Handler handler = new Handler() {
+    private int topRes[] = new int[]{R.id.id_iv_top1,R.id.id_iv_top2,R.id.id_iv_top3,R.id.id_iv_top4};
+    private int topTVRes[] = new int[]{R.id.id_tv_top1,R.id.id_tv_top2,R.id.id_tv_top3,R.id.id_tv_top4};
+    public Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
                     indexVp %= 3;
-//                    viewPager.setCurrentItem(indexVp);
+                    viewPager.setCurrentItem(indexVp);
                     indexVp++;
+                    break;
+                case 666:
+                    String url = msg.obj.toString();
+                    ViewPagerBean bean = ViewPagerBean.objectFromData(url);
+                    listBean.addAll(bean.getData());
+                    list.clear();
+                    for (int i = 0; i < listBean.size(); i++) {
+                        try {
+                            String urlImg = listBean.get(i).getTheme_image();
+                            ImageView imageView = new ImageView(getActivity());
+                            imageView.setLayoutParams(lp);
+//                        imageView.setTag(urlImg);
+                            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                            imageView.setImageResource(R.mipmap.ic_launcher);
+                            OkHttpUtils.setImage(urlImg, imageView);
+                            list.add(imageView);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    viewPagerAdapter = new ViewPagerCommonAdapter
+                            (list, getActivity(), listBean);
+                    viewPager.setAdapter(viewPagerAdapter);
+                    break;
+                case 888:
+                    TagBean t = (TagBean) msg.obj;
+                    for (int i = 0; i < 4; i++) {
+                        try {
+                            String urlImg = t.getData().get(i).getTheme_image();
+                            ImageView iv = (ImageView) ll.findViewById(topRes[i]);
+                            TextView tv = (TextView) ll.findViewById(topTVRes[i]);
+                            OkHttpUtils.setImage(urlImg,iv);
+                            tv.setText(t.getData().get(i).getTheme_name());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
                     break;
             }
         }
     };
+    private ViewGroup.LayoutParams lp;
+
     @Override
     protected String setTitle() {
         return "首页";
@@ -73,6 +117,7 @@ public class FristPageFragment extends BaseFragment {
         setData();
         setViewPager();
         setTime();
+        lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
     private void setTime() {
@@ -90,7 +135,7 @@ public class FristPageFragment extends BaseFragment {
         viewPager = (ViewPager) ll.findViewById(R.id.id_vp_first);
         list = new ArrayList<>();
         listBean = new ArrayList<>();
-        OkHttpUtils.getRequest(FristConstont.VIEWPAGE, new Callback() {
+        OkHttpUtils.getRequest(FristConstont.URL_VIEWPAGE, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 LogUtil.e("ViewPage请求出错");
@@ -100,20 +145,11 @@ public class FristPageFragment extends BaseFragment {
             public void onResponse(Call call, Response response) throws IOException {
                 ResponseBody body = response.body();
                 String url = body.string();
-//                LogUtil.e("连接成功 viewPager:" + url);
-//                ViewPagerBean bean = ViewPagerBean.objectFromData(url);
-//                listBean.addAll(bean.getData());
-//                list.clear();
-//                for (int i = 0; i < listBean.size(); i++) {
-//                    String urlImg = listBean.get(i).getTheme_image();
-//                    ImageView imageView = new ImageView(getActivity());
-//                    Picasso.with(getActivity()).load(urlImg).into(imageView);
-//                    list.add(imageView);
-//                }
-//                viewPagerAdapter = new ViewPagerCommonAdapter
-//                        (list, getActivity(), listBean);
-//                viewPager.setAdapter(viewPagerAdapter);
-//                viewPagerAdapter.notifyDataSetChanged();
+                Message message = Message.obtain();
+                message.what = 666;
+                message.obj = url;
+
+                handler.sendMessage(message);
             }
         });
 
@@ -125,7 +161,7 @@ public class FristPageFragment extends BaseFragment {
     }
 
     public void setData() {
-        OkHttpUtils.getRequest(FristConstont.TOPICON, new Callback() {
+        OkHttpUtils.getRequest(FristConstont.URL_TOPICON, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 LogUtil.e("连接错误");
@@ -134,7 +170,13 @@ public class FristPageFragment extends BaseFragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 ResponseBody body = response.body();
-                LogUtil.e("连接成功，topIcon：" + body.string());
+                String url = body.string();
+                LogUtil.e("连接成功，topIcon：" + url);
+                TagBean bean = TagBean.objectFromData(url);
+                Message message = Message.obtain();
+                message.obj = bean;
+                message.what = 888;
+                handler.sendMessage(message);
             }
         });
     }

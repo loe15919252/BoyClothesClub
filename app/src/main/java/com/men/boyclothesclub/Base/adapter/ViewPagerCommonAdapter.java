@@ -25,7 +25,7 @@ public class ViewPagerCommonAdapter extends PagerAdapter {
     private Context context;
     private List<ViewPagerBean.DataBean> listBean;
 
-    public ViewPagerCommonAdapter(List<ImageView> list,Context context,List<ViewPagerBean.DataBean> listBean) {
+    public ViewPagerCommonAdapter(List<ImageView> list, Context context, List<ViewPagerBean.DataBean> listBean) {
         this.list = list;
         this.context = context;
         this.listBean = listBean;
