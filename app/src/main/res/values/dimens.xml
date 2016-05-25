@@ -3,4 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="menu_marginLeft">60dp</dimen>
+
+    <dimen name="custom3_recycler_item_padding">5dp</dimen>
 </resources>
