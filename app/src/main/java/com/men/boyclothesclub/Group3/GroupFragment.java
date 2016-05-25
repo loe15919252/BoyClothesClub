@@ -3,8 +3,11 @@ package com.men.boyclothesclub.Group3;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 import com.men.boyclothesclub.Base.ui.BaseFragment;
+import com.men.boyclothesclub.Base.utils.LogUtil;
 import com.men.boyclothesclub.Group3.Adapter.RecyclerViewAdapter;
 import com.men.boyclothesclub.Group3.bin.Group_bin;
 import com.men.boyclothesclub.Group3.utils.GroupRecyclerDecoration;
@@ -24,11 +27,18 @@ import okhttp3.Response;
  * Created by Administrator on 2016/5/23.
  */
 public class GroupFragment extends BaseFragment {
+
+
     private RecyclerView mRecycler;
     private List<Group_bin.DataBean> mList;
-    private String url="http://api.nanyibang.com/match-list?page=1&system_name=android&versionCode=189";
+    int page=1;
     private Group_bin groupBin;
     private RecyclerViewAdapter adapter;
+    private int oy=0,y=0;
+
+    private String getUrlString(int page){
+        return new String("http://api.nanyibang.com/match-list?page="+page+"&system_name=android&versionCode=189");
+    }
 
     @Override
     protected String setTitle() {
@@ -42,21 +52,24 @@ public class GroupFragment extends BaseFragment {
 
     @Override
     protected void init(LayoutInflater inflater) {
+        mList=new ArrayList<>();
         // TODO: 2016/5/24 初始化控件
         mRecycler= (RecyclerView) rootView.findViewById(R.id.id_Group_Recycler);
-        mRecycler.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        StaggeredGridLayoutManager LayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mRecycler.setLayoutManager(LayoutManager);
         // TODO: 2016/5/25  给Item添加边距
         GroupRecyclerDecoration decoration=new GroupRecyclerDecoration(5);
         mRecycler.addItemDecoration(decoration);
-        initData();
+        initData(getUrlString(page));
+        View inflate = inflater.inflate(R.layout.custom3_group_header, null);
+        TextView tv1 = (TextView) inflate.findViewById(R.id.id_Recycler_test_tv);
+        tv1.setText("这里是头部文件");
         // TODO: 2016/5/24 设置适配器
-        adapter = new RecyclerViewAdapter(mList, getActivity());
+        adapter = new RecyclerViewAdapter(mList, getActivity(),inflate);
         mRecycler.setAdapter(adapter);
-
     }
 
-    private void initData() {
-        mList=new ArrayList<>();
+    private void initData(String url) {
         // TODO: 2016/5/24 初始化数据源
         OkHttpClient httpClient=new OkHttpClient();
         Request request=new Request.Builder()
@@ -77,9 +90,36 @@ public class GroupFragment extends BaseFragment {
     }
 
 
+
+
     @Override
     protected void initEvent() {
+//        RecyclerView.OnScrollListener
+        mRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
 
+                if (newState==RecyclerView.SCROLL_STATE_SETTLING||newState==RecyclerView.SCROLL_STATE_IDLE) {
+                    if (oy==y&&oy!=0)
+                    {
+                        page++;
+                        initData(getUrlString(page));
+                        LogUtil.i("加载分页成功"+page);
+                        adapter.notifyDataSetChanged();
+                    }else
+                    {
+                        oy=y;
+                    }
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                y+=dy;
+            }
+        });
 
     }
 }

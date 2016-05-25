@@ -2,6 +2,7 @@ package com.men.boyclothesclub.Group3.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +24,46 @@ import java.util.List;
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MasonryView>{
 
+    public static final int TYPE_HEADER = 0;
+    public static final int TYPE_NORMAL = 1;
+
     private List<Group_bin.DataBean> list;
     private Context context;
     private ShadowProperty shadowProperty;
+    private View Header;
 
-    // TODO: 2016/5/24 构造方法 传递数据源和上下文 
-    public RecyclerViewAdapter(List<Group_bin.DataBean> list, Context context) {
+    public void setHeaderView(View headerView) {
+        Header = headerView;
+        notifyItemInserted(0);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(Header == null) return TYPE_NORMAL;
+        if(position == 0) return TYPE_HEADER;
+        return TYPE_NORMAL;
+    }
+
+
+    public int getRealPosition(RecyclerView.ViewHolder holder) {
+        int position = holder.getLayoutPosition();
+        return Header == null ? position : position - 1;
+    }
+
+    @Override
+    public void onViewAttachedToWindow(MasonryView holder) {
+        super.onViewAttachedToWindow(holder);
+        ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
+        if(lp != null
+                && lp instanceof StaggeredGridLayoutManager.LayoutParams) {
+            StaggeredGridLayoutManager.LayoutParams p = (StaggeredGridLayoutManager.LayoutParams) lp;
+            p.setFullSpan(holder.getLayoutPosition() == 0);
+        }
+    }
+
+    // TODO: 2016/5/24 构造方法 传递数据源和上下文
+    public RecyclerViewAdapter(List<Group_bin.DataBean> list, Context context,View Header) {
+        this.Header=Header;
         this.list = list;
         this.context = context;
         // TODO: 2016/5/25 阴影样式
@@ -40,29 +75,35 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public MasonryView onCreateViewHolder(ViewGroup parent, int viewType) {
+        if(Header!=null&& viewType == TYPE_HEADER) return new MasonryView(Header);
         // TODO: 2016/5/24 获取布局文件 
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.custom3_recycler_item, parent, false);
-        // TODO: 2016/5/25
+        // TODO: 2016/5/25 对布局设置阴影
         ShadowViewHelper.bindShadowHelper(shadowProperty,view.findViewById(R.id.id_Group_Layout));
         return new MasonryView(view);
     }
 
     @Override
     public void onBindViewHolder(MasonryView holder, int position) {
-        // TODO: 2016/5/24 设置布局内容 
-        holder.textView.setText(list.get(position).getInfo());
+        if(getItemViewType(position) == TYPE_HEADER) return;
+
+
+        final int pos = getRealPosition(holder);
+        // TODO: 2016/5/24 设置布局内容
+        holder.textView.setText(list.get(pos).getInfo());
         Picasso.with(context)
-                .load(list.get(position).getBig_image())
+                .load(list.get(pos).getBig_image())
                 .into(holder.imageView);
-
-
     }
+
 
     @Override
     public int getItemCount() {
         // TODO: 2016/5/24 获取数据条数 
         return list.size();
     }
+
+
 
 
     public static class MasonryView extends  RecyclerView.ViewHolder{
