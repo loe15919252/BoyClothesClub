@@ -1,25 +1,28 @@
 package com.men.boyclothesclub.FristPage1;
 
-import android.media.Image;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.men.boyclothesclub.Base.adapter.ViewPagerCommonAdapter;
 import com.men.boyclothesclub.Base.ui.BaseFragment;
 import com.men.boyclothesclub.Base.utils.LogUtil;
 import com.men.boyclothesclub.Base.utils.OkHttpUtils;
+import com.men.boyclothesclub.FristPage1.adapter.FristRecyclerAdapter;
+import com.men.boyclothesclub.FristPage1.bean.FristBean;
 import com.men.boyclothesclub.FristPage1.bean.OtherBean;
 import com.men.boyclothesclub.FristPage1.bean.ShopBean;
 import com.men.boyclothesclub.FristPage1.bean.TagBean;
 import com.men.boyclothesclub.FristPage1.bean.ViewPagerBean;
 import com.men.boyclothesclub.FristPage1.utils.FristConstont;
+import com.men.boyclothesclub.Group3.utils.GroupRecyclerDecoration;
 import com.men.boyclothesclub.MainActivity;
 import com.men.boyclothesclub.R;
 import com.squareup.picasso.Picasso;
@@ -40,7 +43,9 @@ import okhttp3.ResponseBody;
  */
 public class FristPageFragment extends BaseFragment {
 
-    private ListView lv;
+    private RecyclerView mRecycler;
+    private FristRecyclerAdapter adapter;
+    private List<FristBean.DataBean.ItemDetailBean> fristList;
     private LinearLayout ll;
     private ViewPager viewPager;
     private ViewPagerCommonAdapter viewPagerAdapter;
@@ -73,6 +78,12 @@ public class FristPageFragment extends BaseFragment {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
+
+                case FristConstont.HANDER_TAG_LIST:
+                    FristBean frist = (FristBean) msg.obj;
+                    fristList.addAll(frist.getData().getItemDetail());
+                    adapter.notifyDataSetChanged();
+                    break;
                 case FristConstont.HANDER_TAG_AD_TIMER:
                     indexVp %= 3;
                     viewPager.setCurrentItem(indexVp);
@@ -148,9 +159,18 @@ public class FristPageFragment extends BaseFragment {
 
     @Override
     protected void init(LayoutInflater inflater) {
-        lv = (ListView) getRootLayout().findViewById(R.id.id_lv_frist);
+        fristList = new ArrayList<>();
+        mRecycler = (RecyclerView) getRootLayout().findViewById(R.id.id_lv_frist);
         ll = (LinearLayout) inflater.inflate(R.layout.custom1_frist_top, null);
-        lv.addHeaderView(ll);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mRecycler.setLayoutManager(layoutManager);
+        GroupRecyclerDecoration decoration=new GroupRecyclerDecoration(5);
+        mRecycler.addItemDecoration(decoration);
+        adapter = new FristRecyclerAdapter(fristList, getActivity(),ll);
+        mRecycler.setAdapter(adapter);
+
+        setData();
+//        lv.addHeaderView(ll);
         lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         setTagIconData();
         setViewPager();
@@ -347,5 +367,25 @@ public class FristPageFragment extends BaseFragment {
     @Override
     protected void initEvent() {
 
+    }
+
+    public void setData() {
+        OkHttpUtils.getRequest(FristConstont.URL_LIST, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                LogUtil.e("List错误");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                ResponseBody body = response.body();
+                String listStr = body.string();
+                FristBean frist = FristBean.objectFromData(listStr);
+                Message message = Message.obtain();
+                message.obj = frist;
+                message.what = FristConstont.HANDER_TAG_LIST;
+                handler.sendMessage(message);
+            }
+        });
     }
 }

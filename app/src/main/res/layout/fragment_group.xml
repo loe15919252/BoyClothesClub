@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_background"
     android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/id_toolBar"
         android:layout_width="match_parent"
@@ -22,6 +23,5 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/id_Group_Recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

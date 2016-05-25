@@ -9,7 +9,7 @@
     <!--瀑布流Item布局-->
 
     <ImageView
-        android:id="@+id/id_Recycler_item_iv"
+        android:id="@+id/id_frist_item_iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cropToPadding="true"
@@ -18,7 +18,7 @@
         android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/id_Recycler_item_tv"
+        android:id="@+id/id_frist_item_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
