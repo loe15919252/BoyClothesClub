@@ -110,11 +110,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
+        android:background="@drawable/abc_popup_background_mtrl_mult"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -148,7 +149,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -196,7 +197,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/abc_popup_background_mtrl_mult"
         android:orientation="vertical">
 
         <LinearLayout
@@ -208,13 +210,14 @@
             <ImageView
                 android:id="@+id/id_iv_dp_big"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="450dp"
+                android:layout_weight="2"
                 android:scaleType="fitXY" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="450dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -241,7 +244,8 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/id_dp"
+            android:id="@+id/id_tv_dp1"
+            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
@@ -255,6 +259,7 @@
             <TextView
                 android:id="@+id/id_tv_dp_1"
                 android:layout_width="wrap_content"
+                android:textColor="#000"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp" />
 
@@ -262,25 +267,29 @@
                 android:id="@+id/id_tv_dp_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#000"
                 android:layout_margin="2dp" />
 
             <TextView
                 android:id="@+id/id_tv_dp_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#000"
                 android:layout_margin="2dp" />
 
             <TextView
                 android:id="@+id/id_tv_dp_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#000"
                 android:layout_margin="2dp" />
         </LinearLayout>
     </LinearLayout>
     <!--==========-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/abc_popup_background_mtrl_mult"
         android:orientation="vertical">
 
         <LinearLayout
@@ -292,13 +301,14 @@
             <ImageView
                 android:id="@+id/id_iv_dp_big2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="450dp"
+                android:layout_weight="2"
                 android:scaleType="fitXY" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="450dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -325,8 +335,9 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/id_dp2"
+            android:id="@+id/id_tv_dp2"
             android:layout_width="wrap_content"
+            android:textColor="#000"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
 
@@ -339,18 +350,21 @@
             <TextView
                 android:id="@+id/id_tv_dp_21"
                 android:layout_width="wrap_content"
+                android:textColor="#000"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp" />
 
             <TextView
                 android:id="@+id/id_tv_dp_22"
                 android:layout_width="wrap_content"
+                android:textColor="#000"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp" />
 
             <TextView
                 android:id="@+id/id_tv_dp_23"
                 android:layout_width="wrap_content"
+                android:textColor="#000"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp" />
         </LinearLayout>
@@ -365,19 +379,23 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/abc_popup_background_mtrl_mult"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/id_iv_xt"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
             android:scaleType="fitXY" />
 
         <TextView
             android:id="@+id/id_tv_xt"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#000" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -388,50 +406,70 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:drawableLeft="@drawable/umeng_socialize_pv" />
+                android:drawableLeft="@drawable/umeng_socialize_pv"
+                android:textColor="#000" />
 
             <TextView
                 android:id="@+id/id_tv_xt_rd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="立即阅读" />
+                android:text="立即阅读"
+                android:textColor="#000" />
         </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/abc_popup_background_mtrl_mult"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/id_iv_xt2"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_margin="4dp"
+            android:layout_height="300dp"
             android:scaleType="fitXY" />
 
         <TextView
             android:id="@+id/id_tv_xt2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#000" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/id_tv_xt_pl2"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:drawableLeft="@drawable/umeng_socialize_pv" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/umeng_socialize_pv" />
+
+                <TextView
+                    android:id="@+id/id_tv_xt_pl2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#000" />
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/id_tv_xt_rd2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="立即阅读" />
+                android:text="立即阅读"
+                android:textColor="#000" />
         </RelativeLayout>
     </LinearLayout>
     <!--===============特色市场=============-->
@@ -452,19 +490,31 @@
             android:layout_margin="5dp"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/id_iv_ts1"
+            <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:scaleType="fitXY" />
+                android:background="@drawable/abc_popup_background_mtrl_mult">
 
-            <ImageView
-                android:id="@+id/id_iv_ts2"
+                <ImageView
+                    android:id="@+id/id_iv_ts1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:scaleType="fitXY" />
+                android:background="@drawable/abc_popup_background_mtrl_mult">
+
+                <ImageView
+                    android:id="@+id/id_iv_ts2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -473,22 +523,35 @@
             android:layout_margin="5dp"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/id_iv_ts3"
+            <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:scaleType="fitXY" />
+                android:background="@drawable/abc_popup_background_mtrl_mult">
 
-            <ImageView
-                android:id="@+id/id_iv_ts4"
+                <ImageView
+                    android:id="@+id/id_iv_ts3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:scaleType="fitXY" />
+                android:background="@drawable/abc_popup_background_mtrl_mult">
+
+                <ImageView
+                    android:id="@+id/id_iv_ts4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+            </RelativeLayout>
+
         </LinearLayout>
     </LinearLayout>
-    <!--===============特色市场=============-->
+    <!--===============邦邦精选=============-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
