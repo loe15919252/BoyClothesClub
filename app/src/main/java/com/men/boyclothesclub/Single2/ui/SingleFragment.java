@@ -1,21 +1,16 @@
 package com.men.boyclothesclub.Single2.ui;
 
-import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 
 import com.men.boyclothesclub.Base.ui.BaseFragment;
+import com.men.boyclothesclub.Base.utils.OkHttpUtils;
 import com.men.boyclothesclub.R;
-import com.men.boyclothesclub.Single2.ui.Adapter.RecyclerViewAdapter;
-import com.men.boyclothesclub.Single2.ui.bin.Group_bin;
-import com.men.boyclothesclub.Single2.ui.common.SingleConstants;
+import com.men.boyclothesclub.Single2.ui.Adapter.SingleFrangmentAdapter;
+import com.men.boyclothesclub.Single2.ui.bin.Single_Bin;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,108 +18,70 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by Administrator on 2016/5/23.
+ * Created by Administrator on 2016/5/26.
  */
 public class SingleFragment extends BaseFragment {
 
-    private Toolbar toolbar;
-    private int mTabNum = mTabString.length;   // Tab标签的数量
-    // Tab 标签的字符
-    private static String mTabString[] = new String[]{
-            SingleConstants.TAB_COAT,         //上衣
-            SingleConstants.TAB_TROUSERS,     //裤子
-            SingleConstants.TAB_SHOE,         //鞋子
-            SingleConstants.TAB_DECORATION,   //配饰
-            SingleConstants.TAB_MAN_BAG       //男包
+    private static final int SINGLE_STARTER_ADAPTER=55455;
+    public static final String URL="http://api.nanyibang.com/select-condition?age=24&system_name=android&versionCode=206";
 
-    };
-    // tab 标签的url
-    private String mUrlStr[] = new String[]{
-            SingleConstants.SINGLE_URL_COAT,          // 上衣
-            SingleConstants.SINGLE_URL_TROUSERS,      // 裤子
-            SingleConstants.SINGLE_URL_SHOE,          // 鞋子
-            SingleConstants.SINGLE_URL_DECORATION,   // 配饰
-            SingleConstants.SINGLE_URL_MAN_BAG        // 男包
+
+    private TabLayout mTabLayout;
+    private ViewPager mViewPager;
+
+    SingleFrangmentAdapter adapter;
+
+    private List<Single_Bin.DataBean> mDataBeen;
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case SINGLE_STARTER_ADAPTER:
+                    // TODO: 2016/5/26 得到标识后进行数据更新
+                    adapter.notifyDataSetChanged();
+                    break;
+            }
+        }
     };
 
-    private TabLayout mTab;             // 标签
-    private ViewPager mViewPager;       // 可滚动部分
-    private RecyclerView mRecyclerView;   // 可滚动部分
-    private RecyclerViewAdapter adapter;
-    // fragment
-    private List<Fragment> fragments;
-    private List<Group_bin.DataBean> mList;
-    private Group_bin groupBin;
+  
 
     @Override
-    protected String setTitle() {
-        return "单品";
+    protected void init(LayoutInflater inflater) {
+        // TODO: 2016/5/26 初始化 
+        mTabLayout= (TabLayout) rootView.findViewById(R.id.id_Single_TabLayou);
+        mViewPager= (ViewPager) rootView.findViewById(R.id.id_fragmeng_single_viewpager);
+        mDataBeen=new ArrayList<>();
+        adapter = new SingleFrangmentAdapter(
+                getActivity().getSupportFragmentManager(),
+                mDataBeen);
+        mViewPager.setAdapter(adapter);
+        mTabLayout.setupWithViewPager(mViewPager);
+        // TODO: 2016/5/26 加载数据
+        getGsonBin(URL);
+    }
+
+    @Override
+    protected void initEvent() {
+
     }
 
     @Override
     protected int setRootLayout() {
         return R.layout.fragment_single;
     }
-
     @Override
-    protected void init(LayoutInflater inflater) {
-
-        initTab();
-        initData();
+    protected String setTitle() {
+        return "单品";
     }
 
-    private void initTab() {
-        // TODO: 2016.05.25 初始化控件
-        mTab = (TabLayout) getRootLayout().findViewById(R.id.id_fragmeng_single_tabLayout);
-        mViewPager = (ViewPager) getRootLayout().findViewById(R.id.id_fragmeng_single_viewpager);
-        // 设置数据源
-        fragments = new ArrayList<>();
-        for (int i = 0; i < mTabNum; i++) {
-            SingleCommonFragment singleFragment = new SingleCommonFragment(mUrlStr[i]);
-            fragments.add(singleFragment);
-        }
-
-        mViewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
-            @Override
-            public int getCount() {
-                return fragments.size();
-            }
-
-            @Override
-            public CharSequence getPageTitle(int position) {
-                return mTabString[position];
-            }
-
-            @Override
-            public Fragment getItem(int position) {
-                return fragments.get(position);
-            }
-
-        });
-
-        mTab.setupWithViewPager(mViewPager);
-        //设置 Tab属性
-        mTab.setSelectedTabIndicatorColor(Color.GRAY);
-        mTab.setTabGravity(TabLayout.GRAVITY_CENTER);
-        mTab.setTabMode(TabLayout.MODE_SCROLLABLE);
-    }
-
-
-    private void initData() {
-        mList = new ArrayList<>();
-        // TODO: 2016.05.25 初始化数据
-        OkHttpClient httpClient = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(mUrlStr[0])
-                .build();
-
-        Call call = httpClient.newCall(request);
-        call.enqueue(new Callback() {
+    public void getGsonBin(String url) {
+        // TODO: 2016/5/26 获得 GsonBin数据源
+        OkHttpUtils.getRequest(url, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -133,18 +90,13 @@ public class SingleFragment extends BaseFragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String string = response.body().string();
-                groupBin = Group_bin.objectFromData(string);
-                mList.addAll(groupBin.getData());
+                Single_Bin single_bin = Single_Bin.objectFromData(string);
+                mDataBeen.addAll(single_bin.getData());
+                // TODO: 2016/5/26 加载数据源后发送通知
+                Message message=new Message();
+                message.what=SINGLE_STARTER_ADAPTER;
+                handler.handleMessage(message);
             }
         });
-
-    }
-
-
-    @Override
-    protected void initEvent() {
-        // 关联
-
-
     }
 }
