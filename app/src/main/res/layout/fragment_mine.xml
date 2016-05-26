@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="#98e1e1"
+    android:background="@color/mine_backcolor"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+
+    android:orientation="vertical"
+    android:weightSum="1">
     <android.support.v7.widget.Toolbar
         android:id="@+id/id_toolBar"
         android:layout_width="match_parent"
@@ -17,9 +19,375 @@
             android:layout_gravity="center"
             android:text="我的App"
             android:textSize="18sp" />
+
+
+        <!-- layout_gravity ="right" 是要将该控件靠右-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/setting_white"
+            />
+
     </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/colorPrimary"
+        android:layout_weight="0.06">
+
+        <ImageView
+            android:id="@+id/id_user_icron"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/default_user_icron"
+            />
+        <!-- 游客标签 layout_toRightOf 相对于 旁边的控件，靠右-->
+        <TextView
+            android:text="@string/sidemenu_name"
+            android:textSize="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/id_user_icron"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+
+        <!--  layout_alignParentRight="true" 相对于父布局，居右 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            >
+            <!-- 登录标签 -->
+            <TextView
+                android:text="@string/login"
+                android:textSize="25dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginRight="1dp"
+                android:src="@drawable/back_right_white"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!-- 显示 淘宝订单，购物车，物流信息 -->
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="180dp"></LinearLayout>
+        android:layout_height="60dp"
+        android:background="@color/colorPrimary"
+        android:layout_weight="0.06"
+
+        >
+
+        <!-- 淘宝订单 外围框架-->
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_margin="8dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/bill_white"
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="淘宝订单"
+                    />
+            </LinearLayout>
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/mine_line"
+                />
+        <!-- 购物车 外围框架-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_margin="8dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/shopping_car_white"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:text="购物车"
+                />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/mine_line"
+            />
+        <!-- 物流信息 外围框架-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_margin="8dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/car_white"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:text="物流信息"
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            />
+
+
+    </LinearLayout>
+
+
+
+    <!-- 显示  积分商城 邀请码 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/mine_backcolor"
+        >
+        <!-- 显示  积分商城 的外布局  margin 设置其外边距 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/mine2_backcolor"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            >
+            <!-- 显示  积分商城 的图片 -->
+            <ImageView
+                android:id="@+id/grade_shop"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/gift_blue"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/grade_shop"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="10dp"
+                android:text="积分商城"
+                android:textSize="20dp"
+                android:textColor="#9d9d9d"
+                />
+        </RelativeLayout>
+
+        <!-- 显示  邀请码 的外布局   margin 设置其外边距-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@color/mine2_backcolor"
+            >
+            <!-- 显示  邀请码 的图片 -->
+            <ImageView
+                android:id="@+id/call_code"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/center_purple"
+                />
+
+            <!-- 显示  邀请码 文字的外框 -->
+            <LinearLayout
+                android:layout_toRightOf="@id/call_code"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <!-- 显示  邀请码 文字 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="邀请码"
+                    android:textSize="20dp"
+                    android:textColor="#9d9d9d"
+                    />
+                <!-- 显示  邀请好友加积分 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="邀请好友加积分"
+                    android:textSize="10dp"
+                    android:textColor="@color/colorPrimary"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <!-- 显示  我的收藏 穿衣测试 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/mine_backcolor"
+        >
+
+        <!-- 显示  我的收藏 的外布局 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@color/mine2_backcolor"
+            >
+            <!-- 显示  我的收藏 的图片 -->
+            <ImageView
+                android:id="@+id/my_collect"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/heart_peach_red"
+                />
+
+            <!-- 显示  我的收藏 文字的外框 -->
+            <LinearLayout
+                android:layout_toRightOf="@id/my_collect"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <!-- 显示  我的收藏 文字 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="我的收藏"
+                    android:textSize="20dp"
+                    android:textColor="#9d9d9d"
+                    />
+                <!-- 显示  查看收藏的宝贝 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查看收藏的宝贝"
+                    android:textSize="12dp"
+                    android:textColor="@color/colorPrimary"
+                    />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <!-- 显示  穿衣测试 的外布局 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@color/mine2_backcolor"
+            >
+            <!-- 显示  穿衣测试 的图片 -->
+            <ImageView
+                android:id="@+id/cross_test"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/briefcase_blue"
+                />
+            <!-- 显示  穿衣测试 文字的外框 -->
+            <LinearLayout
+                android:layout_toRightOf="@id/cross_test"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <!-- 显示  穿衣测试 文字 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="穿衣测试"
+                    android:textSize="20dp"
+                    android:textColor="#9d9d9d"
+                    />
+                <!-- 显示  为你量身推荐 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="为你量身推荐"
+                    android:textSize="13dp"
+                    android:textColor="@color/colorPrimary"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
 </LinearLayout>
