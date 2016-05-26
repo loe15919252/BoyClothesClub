@@ -30,7 +30,9 @@ public abstract class BaseFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         title = (TextView) rootView.findViewById(R.id.id_toolbar_title);
-        title.setText(setTitle() != null ? setTitle() : "男人邦");
+        if(title!=null){
+            title.setText(setTitle() != null ? setTitle() : "男人邦");
+        }
         init(inflater);
         initEvent();
         Log.e("-----", "onCreateView: ");

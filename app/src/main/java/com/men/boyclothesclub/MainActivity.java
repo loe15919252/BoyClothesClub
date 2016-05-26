@@ -9,7 +9,7 @@ import com.men.boyclothesclub.FristPage1.FristPageFragment;
 import com.men.boyclothesclub.Group3.GroupFragment;
 import com.men.boyclothesclub.Mine5.MineFragment;
 import com.men.boyclothesclub.School4.SchoolFragment;
-import com.men.boyclothesclub.Single2.SingleFragment;
+import com.men.boyclothesclub.Single2.ui.SingleFragment;
 
 import java.util.Timer;
 

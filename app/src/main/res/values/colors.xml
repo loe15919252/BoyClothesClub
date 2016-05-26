@@ -3,7 +3,7 @@
     <color name="colorPrimary">#00b4c9</color>
     <color name="colorPrimaryDark">#30899f</color>
     <color name="colorAccent">#3777b6</color>
-
+    <color name="viewpager_backcolor">#f46f6f</color>
 
     <color name="main_select">#16B5C8</color>
     <color name="main_no_select">#989898</color>

@@ -15,7 +15,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="我的App"
+            android:text="单品"
             android:textSize="18sp" />
+
     </android.support.v7.widget.Toolbar>
+
+    <android.support.design.widget.TabLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/id_fragmeng_single_tabLayout"
+        >
+
+    </android.support.design.widget.TabLayout>
+
+
+    <!--可滑动的布局内容 -->
+    <!--  <android.support.v7.widget.RecyclerView
+          android:id="@+id/id_fragmeng_single_recyclerview"
+          android:background="@color/viewpager_backcolor"
+          android:scrollbarStyle="outsideOverlay"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1" />   -->
+
+     <android.support.v4.view.ViewPager
+         android:id="@+id/id_fragmeng_single_viewpager"
+         android:background="@color/viewpager_backcolor"
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="1" />
+
+
 </LinearLayout>

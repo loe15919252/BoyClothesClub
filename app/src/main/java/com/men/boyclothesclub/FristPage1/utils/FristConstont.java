@@ -16,4 +16,9 @@ public class FristConstont {
     public final static String URL_SHOP="http://api.nanyibang.com/theme?age=24&system_name=android&type=2&versionCode=206&type=6";
     public final static String URL_OTHER="http://api.nanyibang.com/index-jingxuan?age=24&system_name=android&versionCode=206";
     public final static String URL_LIST="http://api.nanyibang.com/campaign?age=24&campaignId=5&campaignType=jingxuan&page=1&system_name=android&versionCode=206";
+
+
+    public final static String TOP_URL_1="http://www.nanyibang.com/signin/";
+
+
 }

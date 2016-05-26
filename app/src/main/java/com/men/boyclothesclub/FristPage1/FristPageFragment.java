@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.men.boyclothesclub.Base.adapter.ViewPagerCommonAdapter;
 import com.men.boyclothesclub.Base.ui.BaseFragment;
+import com.men.boyclothesclub.Base.ui.JumpManager;
 import com.men.boyclothesclub.Base.utils.LogUtil;
 import com.men.boyclothesclub.Base.utils.OkHttpUtils;
 import com.men.boyclothesclub.FristPage1.adapter.FristRecyclerAdapter;
@@ -41,7 +43,7 @@ import okhttp3.ResponseBody;
 /**
  * Created by Administrator on 2016/5/23.
  */
-public class FristPageFragment extends BaseFragment {
+public class FristPageFragment extends BaseFragment implements View.OnClickListener {
 
     private RecyclerView mRecycler;
     private FristRecyclerAdapter adapter;
@@ -114,7 +116,7 @@ public class FristPageFragment extends BaseFragment {
                     break;
                 case FristConstont.HANDER_TAG_TAG:
                     TagBean t = (TagBean) msg.obj;
-                    for (int i = 0; i < 4; i++) {
+                    for (int i = 0; i < topRes.length; i++) {
                         try {
                             String urlImg = t.getData().get(i).getTheme_image();
                             ImageView iv = (ImageView) ll.findViewById(topRes[i]);
@@ -162,14 +164,23 @@ public class FristPageFragment extends BaseFragment {
         fristList = new ArrayList<>();
         mRecycler = (RecyclerView) getRootLayout().findViewById(R.id.id_lv_frist);
         ll = (LinearLayout) inflater.inflate(R.layout.custom1_frist_top, null);
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+
+
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mRecycler.setLayoutManager(layoutManager);
-        GroupRecyclerDecoration decoration=new GroupRecyclerDecoration(5);
+        GroupRecyclerDecoration decoration = new GroupRecyclerDecoration(5);
         mRecycler.addItemDecoration(decoration);
-        adapter = new FristRecyclerAdapter(fristList, getActivity(),ll);
+        adapter = new FristRecyclerAdapter(fristList, getActivity(), ll);
         mRecycler.setAdapter(adapter);
 
-        setData();
+
+
+
+
+        setListData();
 //        lv.addHeaderView(ll);
         lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         setTagIconData();
@@ -366,10 +377,13 @@ public class FristPageFragment extends BaseFragment {
 
     @Override
     protected void initEvent() {
-
+        for (int i = 0; i < topRes.length; i++) {
+            ImageView iv = (ImageView) ll.findViewById(topRes[i]);
+            iv.setOnClickListener(this);
+        }
     }
 
-    public void setData() {
+    public void setListData() {
         OkHttpUtils.getRequest(FristConstont.URL_LIST, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -387,5 +401,20 @@ public class FristPageFragment extends BaseFragment {
                 handler.sendMessage(message);
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.id_iv_top1:
+                JumpManager.jumpToWebView(getActivity(),FristConstont.TOP_URL_1);
+                break;
+            case R.id.id_iv_top2:
+                break;
+            case R.id.id_iv_top3:
+                break;
+            case R.id.id_iv_top4:
+                break;
+        }
     }
 }
