@@ -163,7 +163,7 @@ public class GroupFragment extends BaseFragment {
 
     private void setHeadrData() {
         manner.setText(hList.get(0).getName());
-        theme.setText(hList.get(1).getName());
+//        theme.setText(hList.get(1).getName());
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
         for (int j = 0; j <hList.size() ; j++) {
             for (int i = 0; i <hList.get(j).getItems().size(); i++) {

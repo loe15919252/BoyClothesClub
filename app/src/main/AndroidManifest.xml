@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.men.boyclothesclub" >
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logo"
@@ -15,7 +17,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Base.ui.WebActivity"/>
+        <activity android:name=".Base.ui.WebActivity" />
+        <activity android:name=".FristPage1.ui.BrandRORActivity" />
+        <activity android:name=".FristPage1.ui.BrandUOActivity" >
+        </activity>
+        <activity android:name=".FristPage1.ui.BrandVISHOWActivity" >
+        </activity>
+        <activity android:name=".FristPage1.ui.BrandUNIActivity" >
+        </activity>
+        <activity android:name=".FristPage1.ui.BrandSIMActivity" >
+        </activity>
+        <activity android:name=".FristPage1.ui.BrandGXGActivity" >
+        </activity>
     </application>
 
 </manifest>

@@ -76,6 +76,7 @@ public class FristPageFragment extends BaseFragment implements View.OnClickListe
     private ImageView ivsp1, ivsp2, ivsp3, ivsp4;
     private ImageView[] ivsps;
     //
+    private OtherBean otherBean;
     public Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -101,7 +102,6 @@ public class FristPageFragment extends BaseFragment implements View.OnClickListe
                             String urlImg = listBean.get(i).getTheme_image();
                             ImageView imageView = new ImageView(getActivity());
                             imageView.setLayoutParams(lp);
-//                        imageView.setTag(urlImg);
                             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                             imageView.setImageResource(R.mipmap.ic_launcher);
                             OkHttpUtils.setImage(urlImg, imageView);
@@ -131,6 +131,7 @@ public class FristPageFragment extends BaseFragment implements View.OnClickListe
                 case FristConstont.HANDER_TAG_OTHER:
                     String url1 = msg.obj.toString();
                     OtherBean other = OtherBean.objectFromData(url1);
+                    otherBean = other;
                     setSchoolView(other);
                     setBrandView(other);
                     setMatch(other);
@@ -175,9 +176,6 @@ public class FristPageFragment extends BaseFragment implements View.OnClickListe
         mRecycler.addItemDecoration(decoration);
         adapter = new FristRecyclerAdapter(fristList, getActivity(), ll);
         mRecycler.setAdapter(adapter);
-
-
-
 
 
         setListData();
@@ -381,6 +379,10 @@ public class FristPageFragment extends BaseFragment implements View.OnClickListe
             ImageView iv = (ImageView) ll.findViewById(topRes[i]);
             iv.setOnClickListener(this);
         }
+        for (int i = 0; i < ppRes.length; i++) {
+            ImageView iv = (ImageView) ll.findViewById(ppRes[i]);
+            iv.setOnClickListener(this);
+        }
     }
 
     public void setListData() {
@@ -407,13 +409,34 @@ public class FristPageFragment extends BaseFragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.id_iv_top1:
-                JumpManager.jumpToWebView(getActivity(),FristConstont.TOP_URL_1);
+                JumpManager.jumpToWebView(getActivity(), FristConstont.TOP_URL_1);
                 break;
             case R.id.id_iv_top2:
+
                 break;
             case R.id.id_iv_top3:
+
                 break;
             case R.id.id_iv_top4:
+
+                break;
+            case R.id.id_iv_pp11:
+                JumpManager.jumpToBrandROR(getActivity(), "&brand_id=" + otherBean.getData().getBrand().get(0).getBrandId());
+                break;
+            case R.id.id_iv_pp12:
+                JumpManager.jumpToBrandUO(getActivity(), "&brand_id=" + otherBean.getData().getBrand().get(1).getBrandId());
+                break;
+            case R.id.id_iv_pp13:
+                JumpManager.jumpToBrandVISHOW(getActivity(), "&brand_id=" + otherBean.getData().getBrand().get(2).getBrandId());
+                break;
+            case R.id.id_iv_pp14:
+                JumpManager.jumpToBrandUNI(getActivity(), "&brand_id=" + otherBean.getData().getBrand().get(3).getBrandId());
+                break;
+            case R.id.id_iv_pp21:
+                JumpManager.jumpToBrandSIM(getActivity(), "&brand_id=" + otherBean.getData().getBrand().get(4).getBrandId());
+                break;
+            case R.id.id_iv_pp22:
+                JumpManager.jumpToBrandGXG(getActivity(), "&brand_id=" + otherBean.getData().getBrand().get(5).getBrandId());
                 break;
         }
     }
