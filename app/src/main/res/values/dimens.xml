@@ -6,4 +6,8 @@
 
     <dimen name="custom3_recycler_item_padding">5dp</dimen>
     <dimen name="topIcon_wh">50dp</dimen>
+    <dimen name="header_margin_td">5dp</dimen>
+    <dimen name="header_margin_lr">10dp</dimen>
+    <dimen name="header_padding">10dp</dimen>
+    <dimen name="SimpleDraweeView_WH">50dp</dimen>
 </resources>

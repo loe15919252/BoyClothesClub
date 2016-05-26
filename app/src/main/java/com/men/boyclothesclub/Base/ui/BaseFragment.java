@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.men.boyclothesclub.R;
 
 
@@ -20,9 +21,10 @@ public abstract class BaseFragment extends Fragment {
     protected LayoutInflater inflater;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup conainer, Bundle savedInstanceState) {
         rootView = inflater.inflate(setRootLayout(), null);
         this.inflater = inflater;
+        Fresco.initialize(getActivity());
         return rootView;
     }
 

@@ -93,7 +93,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.textView.setText(list.get(pos).getInfo());
         Picasso.with(context)
                 .load(list.get(pos).getBig_image())
-                .into(holder.imageView);
+                .placeholder(R.drawable.house_photoview_pic_fail)
+                .into(holder.imageView)
+
+        ;
     }
 
 

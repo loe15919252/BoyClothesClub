@@ -15,4 +15,22 @@
         <item name="android:button">@null</item>
         <item name="android:textColor">@color/main_text</item>
     </style>
+    
+    <style name="Group_Header_Layout">
+        <item name="android:layout_marginTop">@dimen/header_margin_td</item>
+        <item name="android:layout_marginBottom">@dimen/header_margin_td</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginLeft">@dimen/header_margin_lr</item>
+        <item name="android:layout_marginRight">@dimen/header_margin_lr</item>
+        <item name="android:padding">@dimen/header_padding</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Group_Header_horizontal_Layout">
+        <item name="android:layout_marginTop">@dimen/header_margin_td</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>
