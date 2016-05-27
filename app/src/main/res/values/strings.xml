@@ -3,6 +3,9 @@
     <string name="sidemenu_name">游客</string>
     <string name="login">登录</string>
     <string name="test">测试</string>
+
+
+
     <array name="list_test">
         <item>aaaa</item>
         <item>aaaa</item>
@@ -11,4 +14,11 @@
         <item>aaaa</item>
         <item>aaaa</item>
     </array>
+
+    <!-- 登录使用的-->
+
+    <string name="login_id">输入注册账号</string>
+    <string name="password">输入密码</string>
+
+
 </resources>

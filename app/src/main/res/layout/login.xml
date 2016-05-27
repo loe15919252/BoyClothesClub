@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/mine_backcolor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!-- 顶部的 工具栏 -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/id_toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <!-- layout_gravity ="right" 是要将该控件靠右-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/ali_feedback_icon_back_white"
+            />
+
+        <TextView
+            android:id="@+id/id_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="登录"
+            android:textSize="18sp" />
+
+    </android.support.v7.widget.Toolbar>
+
+<!-- 工具栏下面的LOG -->
+   <LinearLayout
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:layout_marginTop="5dp"
+       >
+       <ImageView
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center_horizontal"
+           android:src="@drawable/logo_login_top"
+           />
+   </LinearLayout>
+
+<!-- 登录输入框 -->
+
+   <LinearLayout
+      android:id="@+id/loginli"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/loginUser"
+      android:layout_marginTop="5dp"
+      android:layout_marginLeft="15dp"
+      android:layout_marginRight="15dp"
+      android:background="#ffffff"
+      android:orientation="vertical" >
+
+       <LinearLayout
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           >
+           <EditText
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:text="账号"
+               android:textColor="#000"
+               />
+           <EditText
+               android:id="@+id/loginId"
+               android:layout_width="match_parent"
+               android:layout_height="45dp"
+               android:layout_marginLeft="15dp"
+               android:background="@null"
+               android:hint="@string/login_id"
+               android:textColorHint="#CDCDC1"
+               android:textSize="16sp" />
+       </LinearLayout>
+
+
+       <!-- 登录框中间的横线 -->
+       <LinearLayout
+                android:id="@+id/loginline"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#D7D7D7"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           >
+           <EditText
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:text="密码"
+               android:textColor="#000"
+               />
+
+           <EditText
+               android:id="@+id/loginPassword"
+               android:layout_width="match_parent"
+               android:layout_height="45dp"
+               android:layout_marginLeft="15dp"
+               android:background="@null"
+               android:hint="@string/password"
+               android:inputType="textPassword"
+               android:textColorHint="#CDCDC1"
+               android:textSize="16sp" />
+       </LinearLayout>
+
+
+ </LinearLayout>
+
+<!--注册 登录按钮-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+        
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_btn1"
+            android:layout_weight="1"
+            android:layout_margin="5dip"
+            android:textColor="@color/gray"
+            android:text="注册"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_btn2"
+            android:layout_weight="1"
+            android:layout_margin="5dip"
+            android:text="登录"
+            />
+    </LinearLayout>
+
+<!-- 快速登录 -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="快速登录"
+            android:textSize="18dp"
+            android:textAlignment="center"
+            android:textColor="@color/gray"
+            android:layout_gravity="center"
+            />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <!-- 第三方登录 -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        >
+        <!-- QQ 登录-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/tengxun"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="QQ登录"
+                android:textSize="15dp"
+                android:textColor="@color/gray"
+                />
+        </LinearLayout>
+
+        <!-- 微博登录 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/weibo"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="微博登录"
+                android:textSize="15dp"
+                android:textColor="@color/gray"
+                />
+        </LinearLayout>
+
+        <!-- 微信登录 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/weixin"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="微信登录"
+                android:textSize="15dp"
+                android:textColor="@color/gray"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- 底部 内容-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="20dp"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="用户协议"
+                android:textSize="15dp"
+                android:textColor="@color/gray"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:text="忘记密码?"
+                android:textColor="@color/gray"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>
