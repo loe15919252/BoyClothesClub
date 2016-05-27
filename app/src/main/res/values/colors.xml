@@ -10,8 +10,9 @@
     <color name="menu_text">#df060606</color>
 
 
-
-
+    <color name="mine_backcolor">#d4cfcf</color>
+    <color name="mine2_backcolor">#fdfdfe</color>
+    <color name="gray">#989898</color>
 
 
     <!--公子色-->

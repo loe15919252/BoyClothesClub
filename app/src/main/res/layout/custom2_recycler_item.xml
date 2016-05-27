@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/id_Group_Layout_2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <!--瀑布流Item布局-->
+
+    <ImageView
+        android:id="@+id/id_Recycler_item_iv_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cropToPadding="true"
+        android:adjustViewBounds="true"
+        android:elevation="6dp"
+        android:maxHeight="200dp"
+        android:padding="@dimen/custom3_recycler_item_padding"
+        android:scaleType="center" />
+
+    <TextView
+        android:id="@+id/id_Recycler_item_tv_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/test"
+        android:textColor="@color/item_textcolor" />
+
+</LinearLayout>

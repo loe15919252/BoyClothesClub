@@ -161,11 +161,15 @@ public class GroupFragment extends BaseFragment {
         return headrView;
     }
 
+    
     private void setHeadrData() {
+        // TODO: 2016/5/27 设置头部信息
         manner.setText(hList.get(0).getName());
-//        theme.setText(hList.get(1).getName());
+
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
         for (int j = 0; j <hList.size() ; j++) {
+            View lin_item = mInflate.inflate(R.layout.group_header_lin_item, null);
+            LinearLayout lin_layout = (LinearLayout) lin_item.findViewById(R.id.id_Group_header_horizontal_layout);
             for (int i = 0; i <hList.get(j).getItems().size(); i++) {
                 View inflate = mInflate.inflate(R.layout.custom3_group_header_item, null);
                 inflate.setLayoutParams(lp);
@@ -174,14 +178,19 @@ public class GroupFragment extends BaseFragment {
                 String classify_name = hList.get(j).getItems().get(i).getClassify_name();
                 tv.setText(classify_name);
                 iv.setImageURI(Uri.parse(hList.get(j).getItems().get(i).getClassify_icon()));
-                if (j==0) {
-                    if (i >= 4) {
-                        layout_2.addView(inflate);
-                    } else {
-                        layout_1.addView(inflate);
+                lin_layout.addView(inflate);
+                if (j==0){
+                    if (i%4==3){
+                        layout_1.addView(lin_item);
+                        lin_item = mInflate.inflate(R.layout.group_header_lin_item, null);
+                        lin_layout = (LinearLayout) lin_item.findViewById(R.id.id_Group_header_horizontal_layout);
                     }
                 }else {
-                    layout_3.addView(inflate);
+                    if (i%4==3){
+                        layout_2.addView(lin_item);
+                        lin_item = mInflate.inflate(R.layout.group_header_lin_item, null);
+                        lin_layout = (LinearLayout) lin_item.findViewById(R.id.id_Group_header_horizontal_layout);
+                    }
                 }
             }
         }
@@ -194,7 +203,7 @@ public class GroupFragment extends BaseFragment {
         theme= (TextView) headrView.findViewById(R.id.id_Group_Theme_tv);
         layout_1= (LinearLayout) headrView.findViewById(R.id.id_Group_Manner_lin1);
         layout_2= (LinearLayout) headrView.findViewById(R.id.id_Group_Manner_lin2);
-        layout_3= (LinearLayout) headrView.findViewById(R.id.id_Group_Theme_lin);
+
     }
 
 }

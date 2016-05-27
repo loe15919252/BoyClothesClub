@@ -4,31 +4,25 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/id_Group_Manner_lin1"
         style="@style/Group_Header_Layout">
         <TextView
             android:textColor="@color/menu_text"
             android:id="@+id/id_Group_Manner_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <LinearLayout
-            android:id="@+id/id_Group_Manner_lin1"
-            style="@style/Group_Header_horizontal_Layout"/>
-        <LinearLayout
-            android:id="@+id/id_Group_Manner_lin2"
-            style="@style/Group_Header_horizontal_Layout"/>
+
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/id_Group_Manner_lin2"
         style="@style/Group_Header_Layout">
         <TextView
             android:textColor="@color/menu_text"
             android:id="@+id/id_Group_Theme_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <LinearLayout
-            android:id="@+id/id_Group_Theme_lin"
-            style="@style/Group_Header_horizontal_Layout">
-        </LinearLayout>
+
     </LinearLayout>
 
 
