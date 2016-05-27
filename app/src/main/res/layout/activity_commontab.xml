@@ -2,38 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e6839d"
     android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
-        android:id="@+id/id_toolBar"
+        android:id="@+id/id_toolBar_common"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
 
         <TextView
-            android:id="@+id/id_toolbar_title"
+            android:id="@+id/id_toolbar_title_common"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="单品"
+            android:text="我的App"
             android:textSize="18sp" />
-
     </android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.TabLayout
-        android:background="@color/colorPrimary"
+        android:id="@+id/id_tab_common"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/id_Single_TabLayou"
-        >
-
-    </android.support.design.widget.TabLayout>
-     <android.support.v4.view.ViewPager
-         android:id="@+id/id_fragmeng_single_viewpager"
-         android:background="@color/viewpager_backcolor"
-         android:layout_width="match_parent"
-         android:layout_height="0dp"
-         android:layout_weight="1" />
-
-
+        android:background="@color/colorPrimary"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/id_vp_common"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>

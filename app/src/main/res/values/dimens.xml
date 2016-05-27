@@ -10,4 +10,5 @@
     <dimen name="header_margin_lr">10dp</dimen>
     <dimen name="header_padding">10dp</dimen>
     <dimen name="SimpleDraweeView_WH">50dp</dimen>
+    <dimen name="Single_header_item_padding">5dp</dimen>
 </resources>

@@ -10,8 +10,6 @@ import android.view.LayoutInflater;
 import com.men.boyclothesclub.Base.ui.BaseFragment;
 import com.men.boyclothesclub.R;
 import com.men.boyclothesclub.School4.utils.SchoolConstont;
-import com.men.boyclothesclub.Single2.ui.SingleCommonFragment;
-import com.men.boyclothesclub.Single2.ui.common.SingleConstants;
 
 import java.util.ArrayList;
 import java.util.List;
