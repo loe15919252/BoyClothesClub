@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/mine_backcolor"
+    tools:context="com.men.boyclothesclub.Mine5.SettingsActivity">
+
+    <!-- 顶部的 工具栏 -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/id_toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <!-- layout_gravity ="right" 是要将该控件靠右-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginRight="25dp"
+            android:src="@drawable/ali_feedback_icon_back_white"
+            />
+
+        <TextView
+            android:id="@+id/id_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="设置"
+            android:textSize="18sp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <!-- 消息推送 -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:text="消息推送"
+            android:textSize="20dp"
+            android:textColor="@color/gray"
+            />
+    <!--这里还需要添加一个 滑块控件 -->
+
+
+    </LinearLayout>
+
+    <!-- 修改账户密码 -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="修改账户密码"
+            android:textSize="20dp"
+            android:textColor="@color/gray"
+            />
+
+    </LinearLayout>
+
+    <!-- 淘宝账号 ，分享好友 -->
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="淘宝账号"
+                android:textSize="20dp"
+                android:textColor="@color/gray"
+                />
+        </LinearLayout>
+
+
+        <!-- 中间的横线 -->
+        <LinearLayout
+            android:id="@+id/loginline"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#D7D7D7"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="分享好友"
+                android:textSize="20dp"
+                android:textColor="@color/gray"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+ <!-- 关于 男衣邦 -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="关于男衣邦"
+                android:textSize="20dp"
+                android:textColor="@color/gray"
+                />
+        </LinearLayout>
+
+
+        <!-- 中间的横线 -->
+        <LinearLayout
+            android:id="@+id/loginline2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#D7D7D7"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="建议及反馈"
+                android:textSize="20dp"
+                android:textColor="@color/gray"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!-- 微信公众号 -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="微信公众号"
+            android:textSize="20dp"
+            android:textColor="@color/gray"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/login_btn2"
+
+        android:layout_margin="15dip"
+        android:text="登录"
+        />
+
+
+</LinearLayout>
