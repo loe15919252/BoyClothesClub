@@ -98,7 +98,6 @@
         android:layout_height="75dp"
         android:background="@color/colorPrimary"
         android:layout_weight="0.06"
-
         >
 
         <!-- 淘宝订单 外围框架-->
