@@ -39,7 +39,7 @@ public abstract class TabBaseActivity extends BaseActivity {
     protected List<Fragment> fragmentList;
     @Override
     protected int setRootView() {
-        return R.layout.activity_commontab;
+        return R.layout.activity_frist_brand;
     }
 
     @Override
@@ -61,7 +61,7 @@ public abstract class TabBaseActivity extends BaseActivity {
         OkHttpUtils.getRequest(url1, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                LogUtil.e("Brand连接失败");
+
             }
 
             @Override
@@ -77,7 +77,7 @@ public abstract class TabBaseActivity extends BaseActivity {
         OkHttpUtils.getRequest(url2, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                LogUtil.e("Brand连接失败");
+
             }
 
             @Override

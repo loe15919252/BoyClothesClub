@@ -91,7 +91,6 @@ public class FristRecyclerAdapter extends RecyclerView.Adapter<FristRecyclerAdap
         final int pos = getRealPosition(holder);
         // TODO: 2016/5/24 设置布局内容
         holder.textView.setText(list.get(pos).getTitle());
-        LogUtil.e(list.get(pos).getPic_url());
         holder.imageView.setImageResource(R.mipmap.ic_launcher);
         Picasso.with(context)
                 .load(list.get(pos).getPic_url())

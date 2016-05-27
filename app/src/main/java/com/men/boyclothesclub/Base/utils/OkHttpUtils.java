@@ -87,7 +87,6 @@ public class OkHttpUtils {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        LogUtil.e("图片处理");
                         iv.setImageBitmap(bit);
                     }
                 });

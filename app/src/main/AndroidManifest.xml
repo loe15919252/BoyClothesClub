@@ -29,6 +29,10 @@
         </activity>
         <activity android:name=".FristPage1.ui.BrandGXGActivity" >
         </activity>
+        <activity android:name=".FristPage1.ui.MatchActivity" >
+        </activity>
+        <activity android:name=".FristPage1.ui.ShopRCActivity" >
+        </activity>
     </application>
 
 </manifest>

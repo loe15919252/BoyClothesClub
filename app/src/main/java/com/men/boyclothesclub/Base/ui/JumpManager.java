@@ -10,6 +10,9 @@ import com.men.boyclothesclub.FristPage1.ui.BrandSIMActivity;
 import com.men.boyclothesclub.FristPage1.ui.BrandUNIActivity;
 import com.men.boyclothesclub.FristPage1.ui.BrandUOActivity;
 import com.men.boyclothesclub.FristPage1.ui.BrandVISHOWActivity;
+import com.men.boyclothesclub.FristPage1.ui.MatchActivity;
+import com.men.boyclothesclub.FristPage1.ui.ShopCPActivity;
+import com.men.boyclothesclub.FristPage1.ui.ShopRCActivity;
 import com.men.boyclothesclub.MainActivity;
 
 /**
@@ -60,9 +63,23 @@ public class JumpManager {
         activity.startActivity(intent);
     }
 
+    public static void jumpToMatch(Activity activity, String url) {
+        Intent intent = new Intent(activity, MatchActivity.class);
+        intent.putExtra(Constont.TAG_MACTH_URL, url);
+        activity.startActivity(intent);
+    }
     public static void jumpToWebView(Activity activity, String url) {
         Intent intent = new Intent(activity, WebActivity.class);
         intent.putExtra(Constont.TAG_WEB_URL, url);
         activity.startActivity(intent);
     }
+    public static void jumpToShopCPView(Activity activity) {
+        Intent intent = new Intent(activity, ShopCPActivity.class);
+        activity.startActivity(intent);
+    }
+    public static void jumpToShopRCView(Activity activity) {
+        Intent intent = new Intent(activity, ShopRCActivity.class);
+        activity.startActivity(intent);
+    }
+
 }

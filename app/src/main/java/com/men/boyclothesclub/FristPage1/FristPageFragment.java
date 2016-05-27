@@ -3,8 +3,10 @@ package com.men.boyclothesclub.FristPage1;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -211,7 +213,7 @@ public class FristPageFragment extends BaseFragment implements View.OnClickListe
         OkHttpUtils.getRequest(FristConstont.URL_OTHER, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                LogUtil.e("其他请求出错");
+
             }
 
             @Override
@@ -315,7 +317,7 @@ public class FristPageFragment extends BaseFragment implements View.OnClickListe
         OkHttpUtils.getRequest(FristConstont.URL_SHOP, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                LogUtil.e("特色市场请求出错");
+
             }
 
             @Override
@@ -332,7 +334,7 @@ public class FristPageFragment extends BaseFragment implements View.OnClickListe
         OkHttpUtils.getRequest(FristConstont.URL_VIEWPAGE, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                LogUtil.e("ViewPage请求出错");
+
             }
 
             @Override
@@ -347,14 +349,13 @@ public class FristPageFragment extends BaseFragment implements View.OnClickListe
         OkHttpUtils.getRequest(FristConstont.URL_TOPICON, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                LogUtil.e("连接错误");
+
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 ResponseBody body = response.body();
                 String url = body.string();
-                LogUtil.e("连接成功，topIcon：" + url);
                 TagBean bean = TagBean.objectFromData(url);
                 Message message = Message.obtain();
                 message.obj = bean;
@@ -373,23 +374,12 @@ public class FristPageFragment extends BaseFragment implements View.OnClickListe
         handler.sendMessage(message);
     }
 
-    @Override
-    protected void initEvent() {
-        for (int i = 0; i < topRes.length; i++) {
-            ImageView iv = (ImageView) ll.findViewById(topRes[i]);
-            iv.setOnClickListener(this);
-        }
-        for (int i = 0; i < ppRes.length; i++) {
-            ImageView iv = (ImageView) ll.findViewById(ppRes[i]);
-            iv.setOnClickListener(this);
-        }
-    }
 
     public void setListData() {
         OkHttpUtils.getRequest(FristConstont.URL_LIST, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                LogUtil.e("List错误");
+
             }
 
             @Override
@@ -403,6 +393,26 @@ public class FristPageFragment extends BaseFragment implements View.OnClickListe
                 handler.sendMessage(message);
             }
         });
+    }
+
+    @Override
+    protected void initEvent() {
+        for (int i = 0; i < topRes.length; i++) {
+            ImageView iv = (ImageView) ll.findViewById(topRes[i]);
+            iv.setOnClickListener(this);
+        }
+        for (int i = 0; i < ppRes.length; i++) {
+            ImageView iv = (ImageView) ll.findViewById(ppRes[i]);
+            iv.setOnClickListener(this);
+        }
+        ivdpbig1.setOnClickListener(this);
+        ivdpbig2.setOnClickListener(this);
+
+        ivsp1.setOnClickListener(this);
+        ivsp2.setOnClickListener(this);
+        ivsp3.setOnClickListener(this);
+        ivsp4.setOnClickListener(this);
+
     }
 
     @Override
@@ -437,6 +447,18 @@ public class FristPageFragment extends BaseFragment implements View.OnClickListe
                 break;
             case R.id.id_iv_pp22:
                 JumpManager.jumpToBrandGXG(getActivity(), "&brand_id=" + otherBean.getData().getBrand().get(5).getBrandId());
+                break;
+            case R.id.id_iv_dp_big:
+                JumpManager.jumpToMatch(getActivity(), otherBean.getData().getMatch().get(0).getTheme_id() + "");
+                break;
+            case R.id.id_iv_dp_big2:
+                JumpManager.jumpToMatch(getActivity(), otherBean.getData().getMatch().get(1).getTheme_id() + "");
+                break;
+            case R.id.id_iv_ts1:
+                JumpManager.jumpToShopCPView(getActivity());
+                break;
+            case R.id.id_iv_ts2:
+                JumpManager.jumpToShopRCView(getActivity());
                 break;
         }
     }
