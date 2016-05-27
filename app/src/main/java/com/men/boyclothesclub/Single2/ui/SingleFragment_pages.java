@@ -5,22 +5,24 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.men.boyclothesclub.Base.adapter.CommonAdapter;
-import com.men.boyclothesclub.Base.adapter.ViewHolder;
 import com.men.boyclothesclub.Base.utils.LogUtil;
 import com.men.boyclothesclub.Base.utils.OkHttpUtils;
+import com.men.boyclothesclub.Group3.utils.GroupRecyclerDecoration;
 import com.men.boyclothesclub.R;
+import com.men.boyclothesclub.Single2.ui.Adapter.RecyclerViewAdapter;
 import com.men.boyclothesclub.Single2.ui.Adapter.SingleFrangmentAdapter;
 import com.men.boyclothesclub.Single2.ui.bin.Single_Bin;
+import com.men.boyclothesclub.Single2.ui.bin.Single_List_ben;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -36,14 +38,19 @@ import okhttp3.Response;
  */
 public class SingleFragment_pages extends Fragment {
 
+    private static final int SETLISTDATA=8551554;
     private static final int VERIFYDATABEN=553221;
+    private static final String PATH="http://api.nanyibang.com/tuijian-product? age=24&system_name=android&versionCode=206&page=1&cateId=";
     private View singRoot , headerView;
-    private int classID;
+    private int classID,position;
     private List<Single_Bin.DataBean> mDataBeen;
+    private List<Single_List_ben.DataBean> mListBeen;
     private List<Single_Bin.DataBean.CategoriesBean> mCategories;
-    private CommonAdapter adapter;
-    private LinearLayout mLinearLayout;
-    private GridView mGridView;
+    private int Lieshu=4;
+    private RecyclerViewAdapter rAdapter;
+    private RecyclerView mRecycler;
+    private LinearLayout mLayout;
+    private LayoutInflater mInflate;
 
 
     private Handler handler=new Handler(){
@@ -57,25 +64,29 @@ public class SingleFragment_pages extends Fragment {
                      
                     if (mDataBeen.get(i).getClassID()==classID)
                     {
-                        classID=i;
+                        position=i;
                         LogUtil.w("classID+++"+classID);
                         i=mDataBeen.size()+10;
+
                     }
                 }
-                mCategories.addAll(mDataBeen.get(classID).getCategories());
-                try{
-                    Log.e("--------","Thread:"+Thread.currentThread().getName());
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            adapter.notifyDataSetChanged();
-                        }
-                    });
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                mCategories.addAll(mDataBeen.get(position).getCategories());
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        setHeaderData();
+                    }
+                });
 
+            }else if (msg.what==SETLISTDATA){
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        rAdapter.notifyDataSetChanged();
+                    }
+                });
             }
+
         }
     };
 
@@ -84,40 +95,30 @@ public class SingleFragment_pages extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // TODO: 2016/5/26 初始化，并获取加载控件
         singRoot = inflater.inflate(R.layout.fragment_single_viewpager, container, false);
+        mInflate=inflater;
         classID = getArguments().getInt(SingleFrangmentAdapter.CLASSID);
-        LogUtil.i("classID="+classID);
-
-            mLinearLayout = (LinearLayout) singRoot.findViewById(R.id.id_Single_pager_LinearLayout);
-            headerView = inflater.inflate(R.layout.custom2_single_header_view, container, false);
-            mGridView = (GridView) headerView.findViewById(R.id.id_single_GridView);
-
-            mDataBeen = new ArrayList<>();
-            mCategories = new ArrayList<>();
-            getGsonBin(SingleFragment.URL);
-            adapter = new CommonAdapter<Single_Bin.DataBean.CategoriesBean>(R.layout.custom2_single_header_item, mCategories, getActivity()) {
-                @Override
-                public void setContent(ViewHolder vh, Single_Bin.DataBean.CategoriesBean item) {
-                    ImageView aImageView = (ImageView) vh.getViews(R.id.id_single_item_iv);
-                    TextView aTextView = (TextView) vh.getViews(R.id.id_single_item_tv);
-                    aTextView.setText(item.getName());
-                    Picasso.with(getActivity())
-                            .load(item.getCateimg())
-                            .error(R.drawable.house_photoview_pic_fail)
-                            .into(aImageView);
-                }
-            };
-            mLinearLayout.addView(headerView);
-            mGridView.setAdapter(adapter);
-
+        initData(inflater,container);
+        getGsonBin(SingleFragment.URL);
+        getListBeen(PATH+classID);
+        StaggeredGridLayoutManager LayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mRecycler.setLayoutManager(LayoutManager);
+        // TODO: 2016/5/25  给Item添加边距
+        GroupRecyclerDecoration decoration=new GroupRecyclerDecoration(5);
+        mRecycler.addItemDecoration(decoration);
+        mRecycler.setAdapter(rAdapter);
         return singRoot;
     }
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
+    private void initData(LayoutInflater inflater, ViewGroup container) {
+        mRecycler = (RecyclerView) singRoot.findViewById(R.id.id_Single_pager_LinearLayout);
+        headerView = inflater.inflate(R.layout.custom2_single_header_view, container, false);
+        mLayout = (LinearLayout) headerView.findViewById(R.id.id_single_GridView);
+        mListBeen=new ArrayList<>();
+        mDataBeen = new ArrayList<>();
+        mCategories = new ArrayList<>();
+        rAdapter=new RecyclerViewAdapter(mListBeen,getContext(),headerView);
     }
+
 
     public void getGsonBin(String url) {
         // TODO: 2016/5/26 获得 GsonBin数据源
@@ -126,7 +127,6 @@ public class SingleFragment_pages extends Fragment {
             public void onFailure(Call call, IOException e) {
 
             }
-
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String string = response.body().string();
@@ -138,5 +138,64 @@ public class SingleFragment_pages extends Fragment {
                 handler.handleMessage(message);
             }
         });
+    }
+
+
+    public void getListBeen(String url) {
+        // TODO: 2016/5/26 获得 GsonBin数据源
+        OkHttpUtils.getRequest(url, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String string = response.body().string();
+                Single_List_ben single_list_ben = Single_List_ben.objectFromData(string);
+                mListBeen.addAll(single_list_ben.getData());
+                // TODO: 2016/5/26 加载数据源后发送通知
+                Message message = new Message();
+                message.what =SETLISTDATA;
+                handler.handleMessage(message);
+            }
+        });
+    }
+
+
+    private void setHeaderData() {
+        // TODO: 2016/5/27 动态加载头部数据
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+            View lin_item = mInflate.inflate(R.layout.group_header_lin_item, null);
+            LinearLayout lin_layout = (LinearLayout) lin_item.findViewById(R.id.id_Group_header_horizontal_layout);
+
+            for (int i = 0; i < mCategories.size(); i++) {
+                View inflate = mInflate.inflate(R.layout.custom2_single_header_item, null);
+                inflate.setLayoutParams(lp);
+                TextView tv = (TextView) inflate.findViewById(R.id.id_single_item_tv);
+                ImageView iv = (ImageView) inflate.findViewById(R.id.id_single_item_iv);
+                tv.setText(mCategories.get(i).getName());
+                Picasso.with(getActivity())
+                        .load(mCategories.get(i).getCateimg())
+                        .error(R.drawable.house_photoview_pic_fail)
+                        .into(iv);
+                lin_layout.addView(inflate);
+                    if (i % Lieshu == Lieshu-1) {
+                        mLayout.addView(lin_item);
+                        lin_item = mInflate.inflate(R.layout.group_header_lin_item, null);
+                        lin_layout = (LinearLayout) lin_item.findViewById(R.id.id_Group_header_horizontal_layout);
+
+                }
+            }
+
+            if (lin_layout.getChildCount()!=0) {
+                for (int i = 0; i <= Lieshu - lin_layout.getChildCount(); i++) {
+                    Log.e("----", "setHeaderData: " + Lieshu + "-" + lin_layout.getChildCount());
+                    View v = new View(getActivity());
+                    v.setLayoutParams(lp);
+                    lin_layout.addView(v);
+                }
+                mLayout.addView(lin_item);
+            }
+
     }
 }

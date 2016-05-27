@@ -3,6 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:gravity="center_horizontal"
     android:padding="@dimen/Single_header_item_padding"
+    android:background="#2bb640"
     android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/id_single_item_iv"
