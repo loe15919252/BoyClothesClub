@@ -6,7 +6,6 @@ import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 
@@ -16,8 +15,6 @@ import com.men.boyclothesclub.Base.utils.OkHttpUtils;
 import com.men.boyclothesclub.R;
 import com.men.boyclothesclub.School4.bean.SchoolInitBean;
 import com.men.boyclothesclub.School4.utils.SchoolConstont;
-import com.men.boyclothesclub.Single2.ui.common.SingleConstants;
-import com.squareup.okhttp.OkHttpClient;
 
 import java.io.IOException;
 import java.util.ArrayList;

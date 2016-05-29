@@ -16,13 +16,11 @@ import com.men.boyclothesclub.Base.adapter.ViewHolder;
 import com.men.boyclothesclub.Base.ui.BaseFragment;
 import com.men.boyclothesclub.Base.utils.LogUtil;
 import com.men.boyclothesclub.Base.utils.OkHttpUtils;
-import com.men.boyclothesclub.MainActivity;
+import com.men.boyclothesclub.FristPage1.bean.BrandBean;
 import com.men.boyclothesclub.R;
 import com.men.boyclothesclub.School4.bean.SchoolDataBean;
 import com.men.boyclothesclub.School4.utils.SchoolConstont;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,56 +29,31 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
+
 
 /**
  * Created by Administrator on 2016/5/26.
  */
-public class SchoolCommonFragment extends BaseFragment implements AbsListView.OnScrollListener{
+public class SchoolCommonFragment extends BaseFragment {
 
-    // fragment 列表
-    private ListView mListview;
-
-    // 单品 布局参数
-    private ViewGroup.LayoutParams lp;
-
-    // 请求地址
-    private String request_url;
-
-    // 地址编码
-    private String indexCode = "1";
-
-    // 是否 在底部
-    private boolean isBottom = false;
-
-    // 是否在加载
-    private boolean isLoading = false;
-
-    // 学堂 列表 适配器
-    private CommonAdapter<SchoolDataBean.DataBean> mDataAdapter;
-
-    // 学堂 数据集合
-    private List<SchoolDataBean.DataBean> mDataList;
-
-    // 头部 文件
-    private View mHeadview;
-    private View mHeadviewPage;
-
-    //图片资源
-    private List<ImageView> mImgList;
-    private int i = 0;
-    private Timer timer;
-    private TimerTask timerTask;
-
+    private ListView listView;
+    private CommonAdapter<SchoolDataBean.DataBean> adapter;
+    private List<SchoolDataBean.DataBean> list;
+    private String url;
     private String index;
-    private String url ;
-
 
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case SchoolConstont.SCHOOL_DATA_MSG1:
+                    SchoolDataBean bean = SchoolDataBean.objectFromData(msg.obj.toString());
+                    list = bean.getData();
+                    LogUtil.e("----mes  "+list.get(0).getTitle());
+                    adapter.notifyDataSetChanged();
                     break;
             }
         }
@@ -89,9 +62,9 @@ public class SchoolCommonFragment extends BaseFragment implements AbsListView.On
 
     public SchoolCommonFragment(String index) {
         this.index = index;
-        url = SchoolConstont.SCHOOL_URL_DATA+"&page=1&kind="+index;
-        LogUtil.e(url);
+        url = SchoolConstont.SCHOOL_URL_DATA + "&page=1&kind=" + index;
     }
+
     @Override
     protected String setTitle() {
         return null;
@@ -104,69 +77,63 @@ public class SchoolCommonFragment extends BaseFragment implements AbsListView.On
 
     @Override
     protected void init(LayoutInflater inflater) {
-        // 列表
-        mListview = (ListView) rootView.findViewById(R.id.id_fragment_school_listview);
-        // 加载 listview 中 ITEM 的布局
-        mHeadview = inflater.inflate(R.layout.custom4_school_item, null);
 
-        mDataList = new ArrayList<>();
-        mDataAdapter = new CommonAdapter<SchoolDataBean.DataBean>(
-                R.layout.custom4_school_item,mDataList,getActivity())
-        {
+        listView = (ListView) rootView.findViewById(R.id.id_lv_school);
+        list = new ArrayList<>();
+//        adapter = new CommonAdapter<SchoolDataBean.DataBean>
+//                  (R.layout.custom4_school_item,list,getActivity()) {
+//            @Override
+//            public void setContent(ViewHolder vh, SchoolDataBean.DataBean item) {
+//                vh.setTextViewText(R.id.id_tv_school,"asdasdasd");
+//                ImageView iv = (ImageView) vh.getViews(R.id.id_iiv_school);
+//                Picasso.with(getActivity()).load(R.mipmap.ic_launcher).into(iv);
+//            }
+//        };
+        adapter = new CommonAdapter<SchoolDataBean.DataBean>
+                (R.layout.custom1_frist_brand_item,list,getActivity()) {
             @Override
-            public void setContent(ViewHolder vh, final SchoolDataBean.DataBean item) {
-                LinearLayout layout1= (LinearLayout) vh.getViews(R.id.id_four_item_title);
-                LinearLayout layout2 = (LinearLayout) vh.getViews(R.id.id_four_item_info);
-                // 先不显示
-                layout1.setVisibility(View.GONE);
-                layout2.setVisibility(View.GONE);
-
-                /**
-                 *   -- 这一块 需要重写  --
-                 */
-                if (SchoolConstont.SCHOOL_URL_DATA.equals(item.getInfo().toString())) {
-                    layout1.setVisibility(View.VISIBLE);
-                    vh.setTextViewText(R.id.id_four_item_title, item.getInfo());
-
-                    ImageView iv = (ImageView) vh.getViews(R.id.id_four_item_iv);
-                    iv.setImageResource(R.mipmap.ic_launcher);
-                    String url = item.getImage();
-                    iv.setTag(url);
-
-                }
-
-
+            public void setContent(ViewHolder vh, SchoolDataBean.DataBean item) {
+                vh.setTextViewText(R.id.id_tv_brand, "123123123");
+                ImageView iv = (ImageView) vh.getViews(R.id.id_iv_brand);
+                Picasso.with(getActivity()).load(item.getImage()).into(iv);
             }
         };
+        listView.setAdapter(adapter);
+//        mDataAdapter = new CommonAdapter<SchoolDataBean.DataBean>(
+//                R.layout.custom4_school_item, mDataList, getActivity()) {
+//            @Override
+//            public void setContent(ViewHolder vh, final SchoolDataBean.DataBean item) {
+//                vh.setTextViewText(R.id.id_four_item_title,"asdsadasd");
+//                ImageView iv = (ImageView) vh.getViews(R.id.id_four_item_iv);
+//                Picasso.with(getActivity()).load(item.getImage()).into(iv);
+//            }
+//        };
+//        mListview.setAdapter(mDataAdapter);
 
+        OkHttpUtils.getRequest(url, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
 
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                ResponseBody body = response.body();
+                String json  = body.string();
+                Message message = Message.obtain();
+                message.what = SchoolConstont.SCHOOL_DATA_MSG1;
+                message.obj = json;
+                handler.sendMessage(message);
+            }
+        });
 
     }
-
-
-
-
-
-
 
 
     @Override
     protected void initEvent() {
 
     }
-
-    @Override
-    public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-    }
-
-    @Override
-    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
-    }
-
-
-
 
 
 }

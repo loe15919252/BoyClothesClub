@@ -4,34 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
-    android:gravity="center_horizontal"
     android:orientation="vertical">
-    <!--瀑布流Item布局-->
 
+    <!--<ImageView-->
+        <!--android:id="@+id/id_four_item_iv"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:cropToPadding="true"-->
+        <!--android:elevation="6dp"-->
+        <!--android:padding="@dimen/custom3_recycler_item_padding"-->
+        <!--android:scaleType="centerCrop" />-->
     <ImageView
-        android:id="@+id/id_four_item_iv"
+        android:id="@+id/id_iiv_school"
+        android:layout_margin="6dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:cropToPadding="true"
-        android:elevation="6dp"
-        android:padding="@dimen/custom3_recycler_item_padding"
-        android:scaleType="centerCrop" />
+        android:layout_height="200dp"
+        android:scaleType="fitXY" />
 
+    <!--<TextView-->
+        <!--android:id="@+id/id_four_item_title"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:ellipsize="end"-->
+        <!--android:singleLine="true"-->
+        <!--android:text="@string/test"-->
+        <!--android:textColor="@color/item_textcolor" />-->
     <TextView
-        android:id="@+id/id_four_item_title"
+        android:id="@+id/id_tv_school"
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
         android:singleLine="true"
-        android:text="@string/test"
         android:textColor="@color/item_textcolor" />
 
-    <TextView
-        android:id="@+id/id_four_item_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:text="@string/test"
-        android:textColor="@color/item_textcolor" />
+
 </LinearLayout>
